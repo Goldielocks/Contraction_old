@@ -1,0 +1,123 @@
+	<!DOCTYPE html>
+	<html>
+		<head>
+
+			{% load mptt_tags %}
+			{% load staticfiles %}
+			<title> Hazelnut - Knowledge in a Nutshell</title>
+
+			<link rel="stylesheet" type="text/css" href="{% static "styles/base.css" %}" />
+		</head>
+
+		<body>
+			<div id="banner">
+				<br />
+				Hazelnut
+				<br />
+				Knowledge in a Nutshell
+				<br />
+				<div id="toolbar">
+					<button type="button" id="save">Save</button>
+					<button type="button" id="saveCancel">Cancel</button>
+					<a id="fileCase" href="#openFileTree">Change Filing</a>
+					<a id="linkCase" href="#openLinker">Link Cases</a>
+				</div>
+			</div>
+			<div id="banner-wrapper">
+			</div>	
+			<div id="leftBar" class="sidebar"> 
+				Case List:
+				<br />
+				<a id="add_case" href="#"> New Case</a>
+				<a id="add_folder" href="#">New Folder
+				<ul class="cases" id="sideRoot">
+					{%recursetree nodes %}
+					<li id="sideItem{{node.id}}">
+						<a class="get_case" data-id="{{node.id}}" href="#">{{node.name}}</a>
+						{%if not node.is_leaf_node or node.slaveOnly == True %}
+							<ul class="children" id="sideFolder{{node.id}}">
+								{{children}}
+							</ul>
+						{% endif %}
+						</li>
+					{% endrecursetree %}
+				</ul>
+			</div>
+			<div id="rightBar" class="sidebar"> 
+				<div id="recent">
+					Recent:
+					<ul id="stack">
+					</ul>
+				</div>
+				<hr />
+				<div id="citations">
+					Citations:
+					<ul id="citationList">
+					</ul>
+				</div>
+			</div>
+			{% autoescape off %}
+			<div id="primary" data-id="-1" class="content">
+				<h1>Welcome to Hazelnut</h1>
+				<p>To begin, select a case from the list on the left.</p>
+				<p>Double clicking text in this box will open up an editor.</p>
+				<p>Any operations from the above toolbar will effect the case on this side</p>
+				<p>As long as the editor is open, cases will open on the other side of the page, so don't worry about ruining what you're working on</p>
+			</div>
+			<div id="secondary" data-id="-1" class="viewer">
+				<h1>Once you have a case selected...</h1>
+				<p>You will notice the citations and recent list changing. These will always open on this side of the page, so don&#39;t worry about the editor</p>
+			</div>
+			{% endautoescape %}
+		</body>
+
+		<script src="{% static "js/jquery.js" %}"></script>
+		<script src="{% static "ckeditor/ckeditor.js" %}"></script>
+
+		<script src="{% static "js/files.js" %}"></script>
+
+		<div id="openFileTree" class="modalDialog">
+			<div>
+				<a href="#close" title="Close" class="close">X</a>
+				<h2>Select:</h2>	
+				<ul id="modalRoot">
+				{%recursetree nodes %}
+				{% if node.slaveOnly == True %}
+				<li id="modalItem{{node.id}}">
+					<a class="move_case" data-id="{{node.id}}" href="#">{{node.name}}</a>
+				
+						{%if not node.is_leaf_node or node.slaveOnly == True %}
+						<ul class="children" id="modalFolder{{node.id}}">
+							{{children}}
+						</ul>
+					{% endif %}
+					</li>
+				{% endif %}
+				{% endrecursetree %}
+				</ul>
+			</div>
+		</div>
+
+		<div id="openLinker" class="modalDialog">
+			<div>
+				<a href="#close" title="Close" class="close">X</a>
+				<h2>Select a case to cite:</h2>
+				<ul id="linkRoot">
+				{%recursetree nodes %}
+				<li id="linkItem{{node.id}}">
+					{% if node.slaveOnly != True %}
+					<a class="link_case" data-id="{{node.id}}" href="#">{{node.name}}</a>
+					{%else%}
+					{{node.name}}
+					{%endif%}
+						{%if not node.is_leaf_node or node.slaveOnly == True %}
+						<ul class="children" id="linkFolder{{node.id}}">
+							{{children}}
+						</ul>
+					{% endif %}
+					</li>
+				{% endrecursetree %}
+				</ul>
+			</div>
+		</div>
+	</html>

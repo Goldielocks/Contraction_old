@@ -1,0 +1,186 @@
+#banner
+{
+	position:fixed;
+	top:0px;
+	left:0px;
+	height:10vh;
+	width: 100vw;	
+	background-color: #D0EED0;
+	text-align: center;
+}
+
+#banner *
+{
+	background-color: #D0EED0;
+}
+
+#toolbar
+{
+	position:fixed;
+	left: 20vh;
+	text-align: left;
+}
+
+#toolbar *
+{
+	padding-left:5em;
+}
+
+#save, #saveCancel
+{
+	background-color: #BBBBBB;
+	padding-left: 8px;
+}
+
+#banner-wrapper
+{
+	height:10vh;
+}
+
+.sidebar *
+{
+	background-color: #E0FFE0;
+}
+
+.sidebar
+{
+	position:fixed;
+	top:10vh;
+	background-color: #E0FFE0;
+	width:10vw;
+	height: 90vh;
+	margin-right: 10px;
+	margin-left:-5px;
+	padding:5px;
+}
+
+#rightBar
+{
+	left:90vw;
+}
+
+#leftBar
+{
+}
+
+#login
+{
+	height:90vh;
+	margin-right: 10px;
+	display: inline-block;
+	padding: 5px;
+	width: 40vw;
+	position:fixed;
+	left:12vw;
+}
+
+#cke_primary
+{
+	background-color: #BBBBBB;
+}
+
+.content, #cke_primary
+{
+	background-color: #FFFFFF;
+	height:90vh;
+	margin-right: 10px;
+	display: inline-block;
+	padding: 5px;
+	width:39vw;
+}
+
+.content *
+{
+	background-color: #FFFFFF;
+}
+
+.viewer
+{
+	background-color: #FFFFFF;
+	height:90vh;
+	margin-right: 10px;
+	display: inline-block;
+	padding: 5px;
+	width:38vw;
+}
+
+.viewer *
+{
+	background-color: #FFFFFF;
+}
+
+
+
+
+#primary, #cke_primary
+{
+	position:fixed;
+	left:11vw;
+}
+
+#secondary
+{
+	position: fixed;
+	left: 50.8vw;
+}
+
+*
+{
+	background-color: #C0C0C0;
+}
+
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.modalDialog *{
+	background:#fff;
+
+}
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
