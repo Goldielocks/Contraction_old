@@ -13,17 +13,15 @@ import reversion
 
 def user_login(request):
     context = RequestContext(request)
-
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
         user = authenticate(username=username, password=password)
-
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('')
+                return HttpResponseRedirect('/Builder/')
             else:
                 return HttpResponse("Your account is disabled.")
         else:
