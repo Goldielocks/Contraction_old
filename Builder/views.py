@@ -2,6 +2,7 @@ from Builder.models import Agreement, Node, Category, Clause, ClauseProbability
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.context_processors import csrf
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -23,7 +24,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('')
+                return HttpResponseRedirect("/Builder/", {}, context)
             else:
                 return HttpResponse("Your account is disabled.")
         else:

@@ -8,7 +8,7 @@ class NodeAdmin(reversion.VersionAdmin):
 
 class AgreementAdmin(reversion.VersionAdmin):
 
-	pass
+	pass	
 
 admin.site.register(Node, NodeAdmin)
 admin.site.register(Agreement, AgreementAdmin)
