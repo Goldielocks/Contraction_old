@@ -1,12 +1,19 @@
 from django.contrib import admin
-from Builder.models import Case, Citation
+from Builder.models import Agreement, Node, Category, Clause, ClauseProbability
 import reversion
 
-class CaseAdmin(reversion.VersionAdmin):
+class NodeAdmin(reversion.VersionAdmin):
 
 	pass
 
+class AgreementAdmin(reversion.VersionAdmin):
 
-admin.site.register(Case, CaseAdmin)
-admin.site.register(Citation)
+	pass
+
+admin.site.register(Node, NodeAdmin)
+admin.site.register(Agreement, AgreementAdmin)
+admin.site.register(Category)
+admin.site.register(Clause)
+admin.site.register(ClauseProbability)
+
 

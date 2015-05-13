@@ -2,24 +2,46 @@ from django.db import models
 from django import forms
 from mptt.models import MPTTModel, TreeForeignKey
 
-class Citation(models.Model):
-	name = models.CharField(max_length=60)
-	link = models.CharField(max_length=80)
-
+class Category(models.Model):
+	name = models.CharField(max_length=80)
 	def __unicode__(self):
-		return self.name
+			return self.name
 
-
-class Case(MPTTModel):
-	name = models.CharField(max_length=60, db_index = True, blank=True)
-	value = models.CharField(max_length=2000, blank=True	)	
-	citations = models.ManyToManyField(Citation, blank=True)
-	slaveOnly = models.NullBooleanField( default=False )
+class Node(MPTTModel):
+	category = models.ForeignKey(Category)
 	parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
-	
+	name = models.CharField(max_length=80)
 	def __unicode__(self):
 		return self.name
 	
 	class MPTTMeta:
 		order_insertion_by = ['name']
+
+
+class Clause(models.Model):
+	node = models.ForeignKey(Node)
+	name = models.CharField(max_length=80)
+	def __unicode__(self):
+		return self.name
+
+class Family(models.Model):
+	name = models.CharField(max_length=80)
+	def __unicode__(self):
+		return self.name
+
+class Agreement(models.Model):
+	filePath = models.FilePathField()
+	node = models.OneToOneField(Node)
+	families = models.ManyToManyField(Family)
+	name = models.CharField(max_length=80, db_index = True)
+
+	def __unicode__(self):
+		return self.name
+
+
+class ClauseProbability(models.Model):
+	sigma = models.IntegerField()
+	owner = models.OneToOneField(Clause, related_name = '+')
+	relatives = models.ForeignKey(Clause)
+
 
