@@ -38,7 +38,7 @@ def user_login(request):
 
 @login_required
 def home_page(request):
-	document = Document('/home/sean/code/Contract/Builder/static/docs/test.docx')
+	document = Document('/home/sean/code/Contract/Builder/static/docs/contract-ex1.docx')
 	return render_to_response("home.html", {"paragraphs":document.paragraphs})
 
 
