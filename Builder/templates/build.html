@@ -1,0 +1,26 @@
+{% extends "home.html" %}
+{% load mptt_tags %}
+
+{% block title %} Build {% endblock %}
+
+{% block sidebar %}
+
+<!-- Sidebar -->
+<div id = "sidebar-wrapper">
+	<ul class = "sidebar-nav">
+		<li class="sidebar-brand">
+            <input type="text" class="sidebar-search" placeholder="Search...">
+        </li>
+		{%recursetree nodes %}
+			<li>
+				<a data-id="{{node.id}}" href="#"> {{node.name}} </a>
+				{% if not node.is_leaf_node %}
+					<ul class="children">
+						{{children}}
+					</ul>
+				{% endif %}
+			</li>
+		{% endrecursetree %}
+	</ul>
+</div>
+{% endblock %}
