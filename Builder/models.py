@@ -29,7 +29,7 @@ class Family(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class Agreement(models.Model):
+class Article(models.Model):
 	filePath = models.FilePathField()
 	node = models.OneToOneField(Node)
 	families = models.ManyToManyField(Family)
