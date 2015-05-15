@@ -1,4 +1,4 @@
-from Builder.models import Article, Node, Category, Clause, ClauseProbability
+from Builder.models import Contract, Node, Category, Clause, ClauseProbability
 from docx import Document
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from lxml.html.clean import clean_html
 import lxml.html
 import reversion
-
+import os.path
 
 def user_login(request):
     context = RequestContext(request)
