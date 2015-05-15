@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'reversion',
     'lxml',
     'mptt',
+    'docx',
 
 )
 

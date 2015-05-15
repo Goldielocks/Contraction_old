@@ -2,24 +2,31 @@
 
 {% block title %} Home {% endblock %}
 
-{% block content %}
-<h1>Welcome to Contraction</h1>
-<p>Pick a template from the left to get started </p>
-{% endblock %}
 
-{%block sidebar %}
+{% block sidebar %}
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
-   			Builder
+            <input type="text" class="sidebar-search" placeholder="Search...">
         </li>
         <li>
             <a href="#">Dashboard</a>
+            <ul>
+            <li>
+            	<a href="#">Test</a>
+            </li>
+            </ul>
         </li>
         <li>
             <a href="#">Shortcuts</a>
         </li>
     </ul>
 </div>
+{% endblock %}
+
+{% block content %}
+	{% for p in paragraphs %}
+		<p> {{ p.text }} </p>
+	{% endfor %}
 {% endblock %}

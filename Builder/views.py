@@ -1,4 +1,5 @@
-from Builder.models import Agreement, Node, Category, Clause, ClauseProbability
+from Builder.models import Article, Node, Category, Clause, ClauseProbability
+from docx import Document
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.context_processors import csrf
@@ -24,7 +25,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect("/Builder/", {}, context)
+                return HttpResponseRedirect("/", {}, context)
             else:
                 return HttpResponse("Your account is disabled.")
         else:
@@ -37,9 +38,20 @@ def user_login(request):
 
 @login_required
 def home_page(request):
-	#caseList = Case.objects.all()
+	document = Document('/home/sean/code/Contract/Builder/static/docs/test.docx')
+	return render_to_response("home.html", {"paragraphs":document.paragraphs})
 
-	#if caseList.count == 0:
-	#	return HttpResponse("SHIIIIT")
-	
+
+@login_required
+def build(request):
+	return render_to_response("home.html", {"nodes":Node.objects.all()})
+
+
+@login_required
+def collaborate(request):
+	return render_to_response("home.html", {"nodes":Node.objects.all()})
+
+
+@login_required
+def publish(request):
 	return render_to_response("home.html", {"nodes":Node.objects.all()})
