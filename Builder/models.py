@@ -14,12 +14,14 @@ class Node(MPTTModel):
 	def __unicode__(self):
 		return self.name
 	
-	class MPTTMeta:
-		order_insertion_by = ['name']
+#	class MPTTMeta:
+#		order_insertion_by = ['name']
 
 
 class Clause(models.Model):
 	node = models.ForeignKey(Node)
+	start = models.IntegerField()
+	end = models.IntegerField()
 	name = models.CharField(max_length=80)
 	def __unicode__(self):
 		return self.name
@@ -29,18 +31,18 @@ class Family(models.Model):
 	def __unicode__(self):
 		return self.name
 
-class Article(models.Model):
-	filePath = models.FilePathField()
+class Contract(models.Model):
+	filePath = models.CharField(max_length=200)
 	node = models.OneToOneField(Node)
 	families = models.ManyToManyField(Family)
-	name = models.CharField(max_length=80, db_index = True)
+	name = models.CharField(max_length=80, blank = True)
 
 	def __unicode__(self):
 		return self.name
 
 
 class ClauseProbability(models.Model):
-	sigma = models.IntegerField()
+	sigma = models.DecimalField(decimal_places=6, max_digits=8)
 	owner = models.OneToOneField(Clause, related_name = '+')
 	relatives = models.ForeignKey(Clause)
 
