@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'Contract.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sean',
+        'NAME': 'contraction',
         'USER': 'django',
         'PASSWORD': 'djangopass',
         'HOST': 'localhost',

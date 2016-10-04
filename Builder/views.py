@@ -2,7 +2,7 @@ from Builder.models import Contract, Node, Category, Clause, ClauseProbability
 from docx import Document
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.views.decorators import csrf
+from django.views.decorators.csrf import csrf_protect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib import messages
