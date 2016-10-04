@@ -2,7 +2,7 @@ from Builder.models import Contract, Node, Category, Clause, ClauseProbability
 from docx import Document
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.core.context_processors import csrf
+from django.views.decorators import csrf
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib import messages
@@ -36,10 +36,9 @@ def user_login(request):
         return render_to_response('login.html', {}, context)
 
 
-@login_required
+
 def home_page(request):
-	document = Document('/home/hugh/code/Contraction/Builder/static/docs/contract-ex1.docx')
-	return render_to_response("home.html", {"paragraphs":document.paragraphs})
+	return render_to_response("home.html", {"nodes":Node.objects.all()})
 
 
 @login_required

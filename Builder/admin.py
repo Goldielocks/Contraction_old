@@ -1,12 +1,12 @@
 from django.contrib import admin
 from Builder.models import Contract, Node, Category, Clause, ClauseProbability, Family
-import reversion
+from reversion.admin import VersionAdmin
 
-class NodeAdmin(reversion.VersionAdmin):
+class NodeAdmin(VersionAdmin):
 
 	pass
 
-class ContractAdmin(reversion.VersionAdmin):
+class ContractAdmin(VersionAdmin):
 
 	pass	
 
